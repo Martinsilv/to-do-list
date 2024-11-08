@@ -3,7 +3,7 @@ import { useAuth } from "./Context/authContext";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
-import "./background.css"; // Fondo con el gradiente en movimiento
+import "./background.css";
 import { AlertError } from "./alertError";
 
 export const Login = () => {
@@ -44,12 +44,11 @@ export const Login = () => {
     }
   };
 
-  // Variants para la animación de caída
   const containerVariants = {
-    hidden: { opacity: 0, y: "-100vh" }, // El formulario comienza fuera de la pantalla, arriba
+    hidden: { opacity: 0, y: "-100vh" },
     visible: {
       opacity: 1,
-      y: 0, // El formulario cae al centro
+      y: 0,
       transition: { type: "spring", stiffness: 70, delay: 0.2 },
     },
   };
@@ -61,12 +60,11 @@ export const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center animated-background">
-      {/* Solo animamos el formulario */}
       <motion.div
         className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md space-y-6"
         initial="hidden"
         animate="visible"
-        variants={containerVariants} // Se usa el variant para animación de caída
+        variants={containerVariants}
       >
         <h2 className="text-3xl font-bold text-gray-900 text-center">
           Iniciar Sesión

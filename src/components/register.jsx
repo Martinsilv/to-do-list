@@ -3,7 +3,7 @@ import { useAuth } from "./Context/authContext";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
-import "./background.css"; // Fondo con el gradiente en movimiento
+import "./background.css";
 import { AlertError } from "./alertError";
 
 export const Register = () => {

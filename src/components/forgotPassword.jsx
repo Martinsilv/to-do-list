@@ -21,7 +21,6 @@ export const ForgotPassword = () => {
     setIsLoading(true);
 
     try {
-      // Intentamos directamente resetear la contraseña
       await resetPassword(email);
 
       Swal.fire(
@@ -32,7 +31,6 @@ export const ForgotPassword = () => {
     } catch (error) {
       console.log("Error al intentar enviar el correo:", error);
 
-      // Manejamos diferentes tipos de errores
       let errorMessage =
         "Ha ocurrido un problema al recuperar su contraseña, inténtelo nuevamente";
 

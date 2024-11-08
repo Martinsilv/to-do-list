@@ -27,14 +27,13 @@ const InputToDo = () => {
     }
     if (!user) return;
 
-    const taskLS = JSON.parse(localStorage.getItem(`tasks_${user.uid}`)); // Cambiar LocalStorage con UID
+    const taskLS = JSON.parse(localStorage.getItem(`tasks_${user.uid}`));
     if (taskLS) {
       setTask(taskLS);
     }
 
-    // Escuchar las tareas del usuario autenticado
     const unsubscribe = onSnapshot(
-      collection(db, `users/${user.uid}/tasks`), // Cambiar ruta para usar UID del usuario
+      collection(db, `users/${user.uid}/tasks`),
       (snapshot) => {
         setLoader(true);
         const saveTask = snapshot.docs.map((doc) => ({
@@ -51,11 +50,10 @@ const InputToDo = () => {
 
   useEffect(() => {
     if (user) {
-      localStorage.setItem(`tasks_${user.uid}`, JSON.stringify(tasks)); // Cambiar LocalStorage con UID
+      localStorage.setItem(`tasks_${user.uid}`, JSON.stringify(tasks));
     }
   }, [tasks, user]);
 
-  // Función para agregar tareas a la colección del usuario
   const addTask = async () => {
     if (newTask.trim() === "") {
       Swal.fire({
@@ -66,19 +64,16 @@ const InputToDo = () => {
       return;
     }
     await addDoc(collection(db, `users/${user.uid}/tasks`), {
-      // Cambiar ruta para usar UID del usuario
       text: newTask,
       completed: false,
     });
     setNewTask("");
   };
 
-  // Función para eliminar tareas de la colección del usuario
   const deleteTask = async (id) => {
-    await deleteDoc(doc(db, `users/${user.uid}/tasks`, id)); // Cambiar ruta para usar UID del usuario
+    await deleteDoc(doc(db, `users/${user.uid}/tasks`, id));
   };
 
-  // Confirmación de eliminación con SweetAlert
   const showSwal = (id) => {
     Swal.fire({
       title: "¿Estás seguro?",
@@ -100,10 +95,8 @@ const InputToDo = () => {
     });
   };
 
-  // Actualizar el estado de completado de las tareas
   const toggleComplete = async (id, completed) => {
     await updateDoc(doc(db, `users/${user.uid}/tasks`, id), {
-      // Cambiar ruta para usar UID del usuario
       completed: !completed,
     });
   };
